@@ -6,15 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import sun.awt.SunHints;
 
 import java.util.List;
 
 @RestController
-@EnableAutoConfiguration
 @RequestMapping("/employees")
 public class EmployeeController {
     //在此处完成Employee API
@@ -56,5 +53,12 @@ public class EmployeeController {
             throw new Exception("Invalid input!");
         }
         return employeeRepository.save(employee);
+    }
+
+    //更新某个employee
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public Employee updateById(@PathVariable Long id, @ModelAttribute Employee employee){
+        employeeRepository.updateById(id,employee.getName(),employee.getAge(),employee.getGender(),employee.getSalary(),employee.getCompanyId());
+        return employeeRepository.findById(id);
     }
 }
