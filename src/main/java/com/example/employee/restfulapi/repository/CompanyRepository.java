@@ -9,5 +9,9 @@ import java.util.List;
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
+    //获取company列表
     List<Company> findAll();
+
+    //获取某个具体company
+    Company findById(Long id);
 }

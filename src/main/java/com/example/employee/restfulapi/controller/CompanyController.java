@@ -5,6 +5,7 @@ import com.example.employee.restfulapi.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,15 @@ public class CompanyController {
     @Autowired
     private CompanyRepository companyRepository;
 
+    //获取company列表
     @RequestMapping(method = RequestMethod.GET)
     public List<Company> getCompanys(){
         return companyRepository.findAll();
+    }
+
+    //获取某个具体company
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public Company getCompany(@PathVariable Long id){
+        return companyRepository.findById(id);
     }
 }
