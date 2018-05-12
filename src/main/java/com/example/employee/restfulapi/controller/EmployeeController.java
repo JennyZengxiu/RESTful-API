@@ -3,6 +3,7 @@ package com.example.employee.restfulapi.controller;
 import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +21,11 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Employee> getEmployees(){
         return employeeRepository.findAll();
+    }
+
+    //获取某个具体employee
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public Employee getEmployee(@PathVariable Long id){
+        return employeeRepository.findById(id);
     }
 }

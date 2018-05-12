@@ -8,8 +8,11 @@ import java.util.List;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-    //获取employee列表
 
+    //获取employee列表
     @Override
     List<Employee> findAll();
+
+    //获取某个具体employee
+    Employee findById(Long id);
 }
