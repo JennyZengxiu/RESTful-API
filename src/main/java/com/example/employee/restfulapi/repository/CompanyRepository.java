@@ -5,9 +5,11 @@ import com.example.employee.restfulapi.entity.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -28,4 +30,10 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     //增加一个company
     Company save(Company company);
+
+    //更新某个company
+    @Modifying
+    @Transactional
+    @Query("update Company c set c.companyName = ?2, c.employeesNumber = ?3 where c.id = ?1")
+    int updateById(Long id, String companyName, Integer employeesNumber);
 }

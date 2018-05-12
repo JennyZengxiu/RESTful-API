@@ -9,10 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -55,5 +52,12 @@ public class CompanyController {
             throw new Exception("Invalid input!");
         }
        return companyRepository.save(company);
+    }
+
+    //更新某个company
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public Company updateById(@PathVariable Long id, @ModelAttribute Company company){
+        companyRepository.updateById(id,company.getCompanyName(),company.getEmployeesNumber());
+        return companyRepository.findById(id);
     }
 }
