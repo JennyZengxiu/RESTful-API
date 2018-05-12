@@ -1,6 +1,7 @@
 package com.example.employee.restfulapi.controller;
 
 import com.example.employee.restfulapi.entity.Company;
+import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -30,5 +31,11 @@ public class CompanyController {
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public Company getCompany(@PathVariable Long id){
         return companyRepository.findById(id);
+    }
+
+    //获取某个具体company下所有employee列表
+    @RequestMapping(value = "/{id}/employees",method = RequestMethod.GET)
+    public List<Employee> getEmployees(@PathVariable Long id){
+        return companyRepository.findEmployeesByCompanyId(id);
     }
 }
