@@ -5,6 +5,9 @@ import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,4 +41,10 @@ public class CompanyController {
     public List<Employee> getEmployees(@PathVariable Long id){
         return companyRepository.findEmployeesByCompanyId(id);
     }
+
+    //分页查询，page等于1，pageSize等于5
+   @RequestMapping(value = "/page/{page}/pageSize/{pageSize}",method = RequestMethod.GET)
+    public Page<Company> getCompanys(@PathVariable int page,@PathVariable int pageSize){
+       return companyRepository.findAll(new PageRequest(page, pageSize));
+   }
 }
