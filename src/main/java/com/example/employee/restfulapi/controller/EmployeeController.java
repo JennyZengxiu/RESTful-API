@@ -36,4 +36,10 @@ public class EmployeeController {
     public Page<Employee> getEmployees(@PathVariable int page, @PathVariable int pageSize){
         return employeeRepository.findAll(new PageRequest(page, pageSize));
     }
+
+    //筛选出所有男性Employee
+    @RequestMapping(value = "/male",method = RequestMethod.GET)
+    public List<Employee> getMaleEmployees(){
+        return employeeRepository.findByGender("male");
+    }
 }
