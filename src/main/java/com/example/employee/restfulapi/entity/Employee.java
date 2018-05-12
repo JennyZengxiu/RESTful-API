@@ -26,6 +26,8 @@ public class Employee {
         this.companyId = companyId;
     }
 
+    @ManyToOne(cascade = CascadeType.ALL,optional = true)
+    @JoinColumn(name = "companyId")
     public Long getCompanyId() {
         return companyId;
     }

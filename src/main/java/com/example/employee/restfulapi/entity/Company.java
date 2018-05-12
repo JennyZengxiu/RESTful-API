@@ -2,7 +2,9 @@ package com.example.employee.restfulapi.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,6 +39,7 @@ public class Company {
         this.companyName = companyName;
     }
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "company")
     public Integer getEmployeesNumber() {
         return employeesNumber;
     }
@@ -44,4 +47,5 @@ public class Company {
     public void setEmployeesNumber(Integer employeesNumber) {
         this.employeesNumber = employeesNumber;
     }
+
 }
