@@ -35,4 +35,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Transactional
     @Query("update Employee e set e.name = ?2, e.age = ?3, e.gender = ?4, e.salary = ?5, e.companyId = ?6 where e.id = ?1")
     int updateById(Long id, String name, Integer age, String gender, Integer salary, Long companyId);
+
+    //删除某个employee
+    @Transactional
+    void deleteById(Long id);
 }

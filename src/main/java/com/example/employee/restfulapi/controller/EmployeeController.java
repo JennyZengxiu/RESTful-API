@@ -61,4 +61,10 @@ public class EmployeeController {
         employeeRepository.updateById(id,employee.getName(),employee.getAge(),employee.getGender(),employee.getSalary(),employee.getCompanyId());
         return employeeRepository.findById(id);
     }
+
+    //删除某个employee
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public Employee deleteEmployee(@PathVariable Long id){
+        return null;
+    }
 }
