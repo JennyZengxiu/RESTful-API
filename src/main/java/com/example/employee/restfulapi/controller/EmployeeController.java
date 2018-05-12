@@ -65,6 +65,7 @@ public class EmployeeController {
     //删除某个employee
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public Employee deleteEmployee(@PathVariable Long id){
+        employeeRepository.deleteById(id);
         return null;
     }
 }
