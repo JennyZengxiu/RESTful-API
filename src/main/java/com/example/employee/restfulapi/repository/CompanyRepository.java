@@ -25,4 +25,7 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     //分页查询，page等于1，pageSize等于5
     Page<Company> findAll(Pageable pageable);
+
+    //增加一个company
+    Company save(Company company);
 }

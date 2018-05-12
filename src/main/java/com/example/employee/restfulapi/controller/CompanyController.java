@@ -47,4 +47,13 @@ public class CompanyController {
     public Page<Company> getCompanys(@PathVariable int page,@PathVariable int pageSize){
        return companyRepository.findAll(new PageRequest(page, pageSize));
    }
+
+   //增加一个company
+    @RequestMapping(method = RequestMethod.POST)
+    public Company addCompany(Company company) throws Exception{
+        if (company.getCompanyName() == null||company.getEmployeesNumber() == null){
+            throw new Exception("Invalid input!");
+        }
+       return companyRepository.save(company);
+    }
 }
