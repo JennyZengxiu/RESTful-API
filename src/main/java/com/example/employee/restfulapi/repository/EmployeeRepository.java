@@ -24,4 +24,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     //筛选出所有男性Employee
     List<Employee> findByGender(String gender);
+
+    //增加一个employee
+    Employee save(Employee employee);
 }

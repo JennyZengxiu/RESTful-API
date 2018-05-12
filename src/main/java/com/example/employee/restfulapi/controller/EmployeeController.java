@@ -3,6 +3,7 @@ package com.example.employee.restfulapi.controller;
 import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@EnableAutoConfiguration
 @RequestMapping("/employees")
 public class EmployeeController {
     //在此处完成Employee API
@@ -41,5 +43,18 @@ public class EmployeeController {
     @RequestMapping(value = "/male",method = RequestMethod.GET)
     public List<Employee> getMaleEmployees(){
         return employeeRepository.findByGender("male");
+    }
+
+    //增加一个employee
+    @RequestMapping(method = RequestMethod.POST)
+    public Employee addEmployee(Employee employee)throws Exception{
+        if (employee.getName() == null
+                || employee.getAge() == null
+                || employee.getGender() == null
+                || employee.getSalary() == null
+                || employee.getCompanyId() == null) {
+            throw new Exception("Invalid input!");
+        }
+        return employeeRepository.save(employee);
     }
 }

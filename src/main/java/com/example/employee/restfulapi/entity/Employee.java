@@ -42,9 +42,9 @@ public class Employee {
         this.salary = salary;
     }
 
-    public long getId() {
+    /*public long getId() {
         return id;
-    }
+    }*/
 
     public String getName() {
         return name;
