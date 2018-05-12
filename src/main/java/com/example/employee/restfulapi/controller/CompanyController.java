@@ -60,4 +60,11 @@ public class CompanyController {
         companyRepository.updateById(id,company.getCompanyName(),company.getEmployeesNumber());
         return companyRepository.findById(id);
     }
+
+    //删除某个company以及名下所有employees
+    @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
+    public Company deleteCompany(@PathVariable Long id){
+        companyRepository.deleteById(id);
+        return null;
+    }
 }

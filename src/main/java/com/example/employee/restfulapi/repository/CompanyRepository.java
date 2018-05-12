@@ -36,4 +36,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
     @Transactional
     @Query("update Company c set c.companyName = ?2, c.employeesNumber = ?3 where c.id = ?1")
     int updateById(Long id, String companyName, Integer employeesNumber);
+
+    //删除某个company以及名下所有employees
+    @Transactional
+    void deleteById(Long id);
 }
